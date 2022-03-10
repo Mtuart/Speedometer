@@ -4,15 +4,18 @@ Addon for the Vehicles Plugin (made by Pollitoyeye), which implements a Blocks p
 
 ### How to install:
 > Step 1:
-  Toss the jar file into your /plugins folder. (Download it by clicking on the "Releases" Tab on the right >)
+  Get Vehicles 13.2 (or higher) and idk what Minecraft Versions this runs on... lol
   
 > Step 2:
-  Have Vehicles installed and start your server.
+  Toss the jar file into your /plugins folder. (Download it by clicking on the "Releases" Tab on the right >)
   
 > Step 3:
-  Disable the integrated fuelbar.
+  Have Vehicles installed and start your server.
   
 > Step 4:
+  Disable the integrated fuelbar.
+  
+> Step 5:
   Don't drink and drive!
 
 ___
