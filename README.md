@@ -1,6 +1,6 @@
 # Speedometer
 
-Addon for the Vehicles Plugin (made by Pollitoyeye), which implements a Blocks per Second Speedometer next to the Fuel Bar.
+Addon for the Vehicles Plugin (made by Pollitoyeye), which allows you to add your own Speedometer in the Fuelbar!
 
 ### How to install:
 > Step 1:
@@ -26,6 +26,10 @@ ___
 ### Config Explanation:
 Fuel Bar and Speed will be displayed in the following format:
 `[{fuelbars}] | {speed} b/s`
+
+- **Placeholders:**
+  - `{fuelbars}`
+  - `{speed}`
 
 - **Formats:**
   - Colors: `&7`
