@@ -31,17 +31,23 @@ Fuel Bar and Speed will be displayed in the following format:
   - Colors: `&7`
   - RGB: `&x&r&r&g&g&b&b`
 
+- **Design your own Fuelbar!**
+  - `fuelbarDesign: '&8[{fuelbars}&8] &8| {speed} &x&f&f&c&5&4&fb&8/&x&f&f&c&5&4&fs'`
+  
+- **Design your own Speedbar!**
+  - `speedOnlyBar: '{speed} &x&f&f&c&5&4&fb&8/&x&f&f&c&5&4&fs'`
+
 - **Colors for the available fuel:**
   - `fuelLeftColor: '&x&f&f&c&5&4&f'`
 
 - **Colors for the empty fuel:**
   - `fuelSpentColor: '&7'`
 
-- **Colors for the "[ ] | /":**
-  - `seperatorColors: '&8'`
-
 - **Color for the {speed}:**
   - `speedColor: '&x&f&f&c&5&4&f'`
-
-- **Color for the "b s":**
-  - `blocksPerSecondColor: '&x&f&f&c&5&4&f'`
+  
+- **Amount of Bars:**
+  - `barAmount: 30`
+  
+- **Bar Symbol:**
+  - `barSymbol: '|'`
