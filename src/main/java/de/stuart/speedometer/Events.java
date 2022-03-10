@@ -1,6 +1,7 @@
 package de.stuart.speedometer;
 
 import es.pollitoyeye.vehicles.VehiclesMain;
+import es.pollitoyeye.vehicles.enums.VehicleType;
 import es.pollitoyeye.vehicles.events.VehicleEnterEvent;
 import es.pollitoyeye.vehicles.events.VehicleExitEvent;
 import es.pollitoyeye.vehicles.interfaces.Vehicle;
@@ -18,6 +19,7 @@ public class Events implements Listener {
 
     static String speed;
     static String speed2;
+    static String bar;
     
     static String fuelLeft;
     static String fuelSpent;
@@ -36,7 +38,7 @@ public class Events implements Listener {
         ArmorStand armorStand = vehicleEnterEvent.getMainArmorStand();
         VehicleSubType vehicleSubType = vehicleEnterEvent.getVehicleSubType();
 
-        showTimerBar(vehicleEnterEvent.getPlayer(), armorStand, vehicleSubType);
+        showFuelSpeedBar(vehicleEnterEvent.getPlayer(), armorStand, vehicleSubType, vehicleEnterEvent.getVehicleType());
     }
 
     @EventHandler
@@ -44,7 +46,7 @@ public class Events implements Listener {
         HashmapManager.inVehicle.remove(vehicleExitEvent.getPlayer().getName());
     }
 
-    public static void showTimerBar(Player player, ArmorStand armorStand, VehicleSubType vehicleSubType) {
+    public static void showFuelSpeedBar(Player player, ArmorStand armorStand, VehicleSubType vehicleSubType, VehicleType vehicleType) {
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -60,7 +62,6 @@ public class Events implements Listener {
                 blocksPerSecond = plugin.getConfig().getString("Config.blocksPerSecondColor");
                 
                 if (vehicle != null) {
-                    fuel = (int) vehicle.getFuel();
                     Vector vector = armorStand.getVelocity();
                     speed = String.format("%,.0f", vector.length() * 20);
                     if (!speed.equalsIgnoreCase("2")) {
@@ -69,7 +70,12 @@ public class Events implements Listener {
                         speed2 = "0";
                     }
                     
-                    String bar = seperator + "[" + getFuelBar(fuel, vehicleSubType.getFuelCapacity(), 30, '|', fuelLeft, fuelSpent) + seperator + "]"  + " | " + speedC + speed2 + blocksPerSecond + " b" + seperator + "/" + blocksPerSecond + "s";
+                    if(vehicleType.getUsesFuel()) {
+                        fuel = (int) vehicle.getFuel();
+                        bar = seperator + "[" + getFuelBar(fuel, vehicleSubType.getFuelCapacity(), 30, '|', fuelLeft, fuelSpent) + seperator + "]" + " | " + speedC + speed2 + blocksPerSecond + " b" + seperator + "/" + blocksPerSecond + "s";
+                    } else{
+                        bar = seperator + "[" + speedC + speed2 + blocksPerSecond + " b" + seperator + "/" + blocksPerSecond + "s" + seperator + "]";
+                    }
                     player.sendActionBar(ChatColor.translateAlternateColorCodes('&', bar));
                 } else {
                     cancel();
