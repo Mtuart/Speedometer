@@ -15,7 +15,7 @@ Config:
   # Design your own Fuelbar!
   fuelbarDesign: '&8[{fuelbars}&8] &8| {speed} &x&f&f&c&5&4&fb&8/&x&f&f&c&5&4&fs'
   
-  # Design your own Fuelbar!
+  # Design your own Speedbar!
   speedOnlyBar: '{speed} &x&f&f&c&5&4&fb&8/&x&f&f&c&5&4&fs'
   
   # Colors for the available {fuelbars}
