@@ -1,3 +1,5 @@
+# Speedometer
+
 Addon for the Vehicles Plugin (made by Pollitoyeye), which implements a Blocks per Second Speedometer next to the Fuel Bar.
 
 **How to install:**
