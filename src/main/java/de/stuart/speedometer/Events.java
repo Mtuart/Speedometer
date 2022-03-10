@@ -70,7 +70,7 @@ public class Events implements Listener {
                         speed2 = "0";
                     }
                     
-                    if(vehicleType.getUsesFuel()) {
+                    if(vehicleType.getUsesFuel() ) {
                         fuel = (int) vehicle.getFuel();
                         bar = seperator + "[" + getFuelBar(fuel, vehicleSubType.getFuelCapacity(), 30, '|', fuelLeft, fuelSpent) + seperator + "]" + " | " + speedC + speed2 + blocksPerSecond + " b" + seperator + "/" + blocksPerSecond + "s";
                     } else{
