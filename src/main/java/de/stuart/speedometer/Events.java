@@ -19,16 +19,19 @@ public class Events implements Listener {
 
     static String speed;
     static String speed2;
-    static String bar;
     
+    static String bar;
     static String fuelLeft;
     static String fuelSpent;
-    static String seperator;
     static String speedC;
-    static String blocksPerSecond;
-    
+    static String barSymbol;
+    static String fuelbars;
+
     static int fuel;
+    static int amount;
     
+    static char barChar;
+
     private static Main plugin = Main.instance;
 
     @EventHandler
@@ -57,9 +60,9 @@ public class Events implements Listener {
                 
                 fuelLeft = plugin.getConfig().getString("Config.fuelLeftColor");
                 fuelSpent = plugin.getConfig().getString("Config.fuelSpentColor");
-                seperator = plugin.getConfig().getString("Config.seperatorColors");
                 speedC = plugin.getConfig().getString("Config.speedColor");
-                blocksPerSecond = plugin.getConfig().getString("Config.blocksPerSecondColor");
+                amount = plugin.getConfig().getInt("Config.barAmount");
+                barSymbol = plugin.getConfig().getString("Config.barSymbol");
                 
                 if (vehicle != null) {
                     Vector vector = armorStand.getVelocity();
@@ -72,10 +75,15 @@ public class Events implements Listener {
                     
                     if(vehicleType.getUsesFuel() ) {
                         fuel = (int) vehicle.getFuel();
-                        bar = seperator + "[" + getFuelBar(fuel, vehicleSubType.getFuelCapacity(), 30, '|', fuelLeft, fuelSpent) + seperator + "]" + " | " + speedC + speed2 + blocksPerSecond + " b" + seperator + "/" + blocksPerSecond + "s";
+                        bar = plugin.getConfig().getString("Config.fuelbarDesign");
+                        fuelbars = getFuelBar(fuel, vehicleSubType.getFuelCapacity(), amount, barSymbol, fuelLeft, fuelSpent);
+                        assert bar != null;
+                        bar = bar.replace("{fuelbars}", fuelbars);
                     } else{
-                        bar = seperator + "[" + speedC + speed2 + blocksPerSecond + " b" + seperator + "/" + blocksPerSecond + "s" + seperator + "]";
+                        bar = plugin.getConfig().getString("Config.speedOnlyBar");
                     }
+                    assert bar != null;
+                    bar = bar.replace("{speed}", speedC + speed2);
                     player.sendActionBar(ChatColor.translateAlternateColorCodes('&', bar));
                 } else {
                     cancel();
@@ -84,7 +92,7 @@ public class Events implements Listener {
         }.runTaskTimer(Main.instance, 0, 20);
     }
 
-    public static String getFuelBar(int current, int max, int totalBars, char symbol, String fuelLeft, String fuelSpent) {
+    public static String getFuelBar(int current, int max, int totalBars, String symbol, String fuelLeft, String fuelSpent) {
         float percent = (float) current / max;
         int fuelbar = (int) (totalBars * percent);
 
