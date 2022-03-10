@@ -24,21 +24,21 @@ ___
 Fuel Bar and Speed will be displayed in the following format:
 `[{fuelbars}] | {speed} b/s`
 
-**Formats:**
+- **Formats:**
 > Colors: `&7`
 > RGB: `&x&r&r&g&g&b&b`
 
-**Colors for the available fuel**
-`fuelLeftColor: '&x&f&f&c&5&4&f'`
+- **Colors for the available fuel:**
+> `fuelLeftColor: '&x&f&f&c&5&4&f'`
 
-**Colors for the empty fuel**
-`fuelSpentColor: '&7'`
+- **Colors for the empty fuel:**
+> `fuelSpentColor: '&7'`
 
-**Colors for the "[ ] | /"**
-`seperatorColors: '&8'`
+- **Colors for the "[ ] | /":**
+> `seperatorColors: '&8'`
 
-**Color for the {speed}**
-`speedColor: '&x&f&f&c&5&4&f'`
+- **Color for the {speed}:**
+> `speedColor: '&x&f&f&c&5&4&f'`
 
-**Color for the "b s"**
-`blocksPerSecondColor: '&x&f&f&c&5&4&f'`
+- **Color for the "b s":**
+> `blocksPerSecondColor: '&x&f&f&c&5&4&f'`
