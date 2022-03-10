@@ -1,0 +1,10 @@
+name: Speedometer
+version: '${project.version}'
+main: de.stuart.speedometer.Main
+api-version: 1.18
+depend: [ Vehicles ]
+authors: [ Stuart ]
+commands: 
+  SpeedometerReload:
+    usage: /<command>
+    permission: speedometer.reload
