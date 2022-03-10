@@ -4,7 +4,7 @@ Addon for the Vehicles Plugin (made by Pollitoyeye), which implements a Blocks p
 
 **How to install:**
 > Step 1:
-  Toss the jar file into your /plugins folder.
+  Toss the jar file into your /plugins folder. (Download it by clicking on the "Releases" Tab on the right >)
   
 > Step 2:
   Have Vehicles installed and start your server.
