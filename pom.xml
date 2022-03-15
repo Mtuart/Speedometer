@@ -6,7 +6,7 @@
 
     <groupId>de.stuart.Speedometer</groupId>
     <artifactId>Speedometer</artifactId>
-    <version>4.0</version>
+    <version>5.0</version>
     <packaging>jar</packaging>
 
     <name>Speedometer</name>

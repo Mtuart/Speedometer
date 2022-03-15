@@ -6,20 +6,22 @@ import es.pollitoyeye.vehicles.events.VehicleEnterEvent;
 import es.pollitoyeye.vehicles.events.VehicleExitEvent;
 import es.pollitoyeye.vehicles.interfaces.Vehicle;
 import es.pollitoyeye.vehicles.interfaces.VehicleSubType;
+import io.papermc.paper.event.entity.EntityMoveEvent;
 import net.md_5.bungee.api.ChatColor;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Events implements Listener {
-
-    static String speed;
-    static String speed2;
-    
+        
     static String bar;
     static String fuelLeft;
     static String fuelSpent;
@@ -29,9 +31,8 @@ public class Events implements Listener {
 
     static int fuel;
     static int amount;
+    static double finalspeed;
     
-    static char barChar;
-
     private static Main plugin = Main.instance;
 
     @EventHandler
@@ -47,6 +48,32 @@ public class Events implements Listener {
     @EventHandler
     public void onVehicleExit(VehicleExitEvent vehicleExitEvent) {
         HashmapManager.inVehicle.remove(vehicleExitEvent.getPlayer().getName());
+    }
+    
+    @EventHandler
+    public void onVehicleMove(EntityMoveEvent event){
+        if(event.getEntity().getType().equals(EntityType.ARMOR_STAND)){
+            ArmorStand stand = (ArmorStand) event.getEntity();
+            HashMap<Player, Vehicle> map = VehiclesMain.getPlugin().playerVehicles;
+            if(stand.getCustomName().contains(";")) {
+                String[] split = stand.getCustomName().split(";");
+                for (Map.Entry<Player, Vehicle> entry : map.entrySet()) {
+                    Player player = entry.getKey();
+                    Vehicle vehicle = entry.getValue();
+                    if(player.getUniqueId().toString().equalsIgnoreCase(split[2])){
+                        if(vehicle.getMainStand().getCustomName().contains(split[3])){
+                            Location start = event.getFrom();
+                            Location end = event.getTo().clone();
+                            
+                            start.setY(0);
+                            end.setY(0);
+                            
+                            finalspeed = start.distance(end) * 20;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static void showFuelSpeedBar(Player player, ArmorStand armorStand, VehicleSubType vehicleSubType, VehicleType vehicleType) {
@@ -65,14 +92,6 @@ public class Events implements Listener {
                 barSymbol = plugin.getConfig().getString("Config.barSymbol");
                 
                 if (vehicle != null) {
-                    Vector vector = armorStand.getVelocity();
-                    speed = String.format("%,.0f", vector.length() * 20);
-                    if (!speed.equalsIgnoreCase("2")) {
-                        speed2 = String.format("%,.0f", vector.length() * 20);
-                    } else {
-                        speed2 = "0";
-                    }
-                    
                     if(vehicleType.getUsesFuel() ) {
                         fuel = (int) vehicle.getFuel();
                         bar = plugin.getConfig().getString("Config.fuelbarDesign");
@@ -83,7 +102,7 @@ public class Events implements Listener {
                         bar = plugin.getConfig().getString("Config.speedOnlyBar");
                     }
                     assert bar != null;
-                    bar = bar.replace("{speed}", speedC + speed2);
+                    bar = bar.replace("{speed}", speedC + String.format("%,.0f", finalspeed));
                     player.sendActionBar(ChatColor.translateAlternateColorCodes('&', bar));
                 } else {
                     cancel();
