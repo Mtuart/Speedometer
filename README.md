@@ -4,7 +4,7 @@ Addon for the Vehicles Plugin (made by Pollitoyeye), which allows you to add you
 
 ### How to install:
 > Step 1:
-  Get Vehicles 13.2 (or higher) and idk what Minecraft Versions this runs on... lol
+  Get Vehicles 13.2 (or higher) and idk what Minecraft Versions this runs on... At least 1.18 though
   
 > Step 2:
   Toss the jar file into your /plugins folder. (Download it by clicking on the "Releases" Tab on the right >)
